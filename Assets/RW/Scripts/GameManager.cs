@@ -74,6 +74,9 @@ namespace RayWenderlich.SpaceInvadersUnity
         [SerializeField]
         private Button restartButton;
 
+        [SerializeField]
+        private Button nextlevel;
+
         private int score;
 
         internal void UpdateScore(int value)
@@ -87,6 +90,7 @@ namespace RayWenderlich.SpaceInvadersUnity
             gameOver.SetActive(failure);
             allClear.SetActive(!failure);
             restartButton.gameObject.SetActive(true);
+            nextlevel.gameObject.SetActive(true);
 
             Time.timeScale = 0f;
             music.StopPlaying();
@@ -130,6 +134,7 @@ namespace RayWenderlich.SpaceInvadersUnity
             scoreLabel.text = $"Score: {score}";
             gameOver.gameObject.SetActive(false);
             allClear.gameObject.SetActive(false);
+
 
             restartButton.onClick.AddListener(() =>
             {

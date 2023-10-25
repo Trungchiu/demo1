@@ -35,7 +35,7 @@ namespace RayWenderlich.SpaceInvadersUnity
     {
         internal TorchkaManager manager;
 
-        [SerializeField] 
+        [SerializeField]
         private SpriteRenderer spriteRenderer;
 
         private void Awake()
@@ -46,15 +46,16 @@ namespace RayWenderlich.SpaceInvadersUnity
                                         sprite.rect, normalizedPivot, sprite.pixelsPerUnit);
         }
 
-        //anyone in layer 'Hero' or 'Enemy' will trigger this
+        //anyone in layer 'Damage' will trigger this
         private void OnTriggerStay2D(Collider2D other)
         {
             bool damage = manager.CheckForDamage(spriteRenderer.sprite.texture,
                  spriteRenderer.transform.InverseTransformPoint(other.transform.position));
 
-            //Uncomment the following after adding the 'Bullet' code:
-            // if (other.GetComponent<Bullet>() && damage)
-            //     other.GetComponent<Bullet>().DestroySelf();
+            if (other.GetComponent<Bullet>() && damage)
+            {
+                other.GetComponent<Bullet>().DestroySelf();
+            }
         }
     }
 }
